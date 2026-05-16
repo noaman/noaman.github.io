@@ -17,6 +17,10 @@
       --text-muted: #71717a;
       --accent: #18181b;
       --accent-muted: #3f3f46;
+      /* Muted burgundy — accents only, keeps contrast calm */
+      --ruby: #b00b1c;
+      --ruby-soft: rgba(107, 48, 54, 0.1);
+      --ruby-faint: rgba(107, 48, 54, 0.06);
       --gradient: linear-gradient(145deg, #18181b 0%, #3f3f46 100%);
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.05);
       --shadow-hover: 0 16px 48px -12px rgba(0, 0, 0, 0.14);
@@ -38,7 +42,11 @@
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    ::selection { background: var(--accent-muted); color: #fff; }
+    a:focus-visible {
+      outline: 2px solid var(--ruby);
+      outline-offset: 3px;
+    }
+    ::selection { background: var(--ruby-soft); color: var(--text); }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
 
@@ -59,7 +67,7 @@
       font-weight: 800; font-size: 1.05rem;
       letter-spacing: -0.03em;
     }
-    nav .logo em { font-style: normal; color: var(--accent-muted); }
+    nav .logo em { font-style: normal; color: var(--ruby); }
     nav ul { display: flex; list-style: none; gap: 24px; font-size: 0.82rem; font-weight: 500; }
     nav ul a { color: var(--text-secondary); transition: color 0.2s ease; }
     nav ul a:hover { color: var(--text); text-decoration: none; }
@@ -75,7 +83,9 @@
       position: absolute;
       top: -320px; right: -220px;
       width: 720px; height: 720px;
-      background: radial-gradient(circle, rgba(24, 24, 27, 0.045) 0%, transparent 68%);
+      background:
+        radial-gradient(circle, var(--ruby-faint) 0%, transparent 52%),
+        radial-gradient(circle, rgba(24, 24, 27, 0.045) 0%, transparent 68%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -118,9 +128,19 @@
       background: var(--gradient);
       color: #fff;
       border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 4px 14px rgba(0,0,0,0.08);
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.06),
+        0 4px 14px rgba(0,0,0,0.08),
+        inset 3px 0 0 var(--ruby);
     }
-    .btn-primary:hover { opacity: 0.94; text-decoration: none; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .btn-primary:hover {
+      opacity: 0.94;
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow:
+        0 4px 20px rgba(0,0,0,0.12),
+        inset 3px 0 0 var(--ruby);
+    }
     .btn-outline {
       background: var(--surface);
       color: var(--text);
@@ -177,6 +197,18 @@
       letter-spacing: 0.1em;
       color: var(--text-muted);
       margin-bottom: 6px;
+      padding-left: 11px;
+      border-left: 2px solid var(--ruby);
+    }
+
+    .sec-label_connect{
+      font-size: 0.7rem; font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      padding-left: 11px;
+      
     }
     .sec-title {
       font-size: 1.8rem; font-weight: 700;
@@ -496,7 +528,8 @@
   <div class="container">
     <div class="hero-inner">
       <h1>Noaman Kazi<br><em>AI &amp; Digital Transformation</em></h1>
-      <p>Every decade, a technology arrives that was supposed to change everything. What actually changes things is the fraction of organisations that close the gap between what it can do and what they can absorb. Strategy alone is a deck. Engineering alone is a demo. The work — the real work — lives in the fluency between them.</p>
+      <p>Every decade, a technology arrives that was supposed to change everything. What actually changes things is the fraction of organisations that close the gap between what it can do and what they can absorb. Strategy alone is a deck. Engineering alone is a demo. The work — the real work — lives in the fluency between them.
+      </p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">See my work &rarr;</a>
         <a href="#connect" class="btn btn-outline">Get in touch</a>
@@ -523,33 +556,33 @@
       <div class="proj-card">
         <div class="top">
           <div class="icon-box"><i data-lucide="globe-2" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/geography_assistant_agent" target="_blank" rel="noopener noreferrer">geography_assistant_agent</a></h4>
+          <h4><a href="https://github.com/noaman/geography_assistant_agent" target="_blank" rel="noopener noreferrer">intgr8 Deep Agents</a></h4>
         </div>
-        <p>AI teaching assistant for Grade 10 Geography with a RAG pipeline. Live demo on GitHub Pages — answers curriculum questions using vector search over textbooks.</p>
+        <p>Deep agentic harness to run long running agentic workflows. Complete with a TUI, CLI and intgrations with 400+ LLMs, SKills , Memory, Planning Loops, and more.</p>
         <div class="proj-meta">
-          <span>HTML</span>
-          <span>RAG &middot; Vector Search</span>
+          <span>Python</span>
+          <span>Deep Agent Harness &middot; Multi Agent Orchestration</span>
         </div>
       </div>
 
       <div class="proj-card">
         <div class="top">
           <div class="icon-box"><i data-lucide="users-round" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/TA_agents" target="_blank" rel="noopener noreferrer">TA_agents</a></h4>
+          <h4><a href="https://github.com/noaman/TA_agents" target="_blank" rel="noopener noreferrer">intgr8 - Multi Agent Orchestration with Low Code</a></h4>
         </div>
-        <p>Multi-agent teaching assistant framework. Experiments with agentic AI orchestration — role-based agents collaborating on educational tasks.</p>
+        <p>Web based low code platform to build, deploy and orchestrate multi agentic workflows.</p>
         <div class="proj-meta">
-          <span>HTML</span>
-          <span>Multi-Agent &middot; Orchestration</span>
+          <span>Python</span>
+          <span>Multi-Agent &middot; Orchestration &middot; Low Code</span>
         </div>
       </div>
 
       <div class="proj-card">
         <div class="top">
           <div class="icon-box"><i data-lucide="handshake" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/hire_get_hired" target="_blank" rel="noopener noreferrer">hire_get_hired</a></h4>
+          <h4><a href="https://github.com/noaman/hire_get_hired" target="_blank" rel="noopener noreferrer">Hire or Get Hired</a></h4>
         </div>
-        <p>End-to-end hiring and job application platform. Connects talent with opportunities through an intuitive interface deployed on GitHub Pages.</p>
+        <p>A AI driven second brain for recruiters and job seekers. Prototype for an End-to-end hiring and job application platform. Connects talent with opportunities through an intuitive interface.</p>
         <div class="proj-meta">
           <span>HTML</span>
           <span>Platform &middot; UI</span>
@@ -559,19 +592,19 @@
       <div class="proj-card">
         <div class="top">
           <div class="icon-box"><i data-lucide="mic-2" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/creatorspod" target="_blank" rel="noopener noreferrer">creatorspod</a></h4>
+          <h4><a href="https://github.com/noaman/creatorspod" target="_blank" rel="noopener noreferrer">Creators Pod</a></h4>
         </div>
-        <p>Platform for content creators to publish, share, and grow their audience. Built with modern web technologies and deployed on GitHub Pages.</p>
+        <p>AI driven platform for content creators to publish, share, and grow their audience.</p>
         <div class="proj-meta">
-          <span>HTML</span>
-          <span>Content &middot; Publishing</span>
+          <span>Python</span>
+          <span>Content &middot; Publishing &middot; AI</span>
         </div>
       </div>
 
       <div class="proj-card">
         <div class="top">
           <div class="icon-box"><i data-lucide="landmark" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/yc_companies" target="_blank" rel="noopener noreferrer">yc_companies</a></h4>
+          <h4><a href="https://github.com/noaman/yc_companies" target="_blank" rel="noopener noreferrer">YC Companies</a></h4>
         </div>
         <p>Y Combinator startup database — searchable index of YC-backed companies. Built for market research, competitive analysis, and deal sourcing.</p>
         <div class="proj-meta">
@@ -580,39 +613,17 @@
         </div>
       </div>
 
-      <div class="proj-card">
-        <div class="top">
-          <div class="icon-box"><i data-lucide="layout-dashboard" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/novacms" target="_blank" rel="noopener noreferrer">novacms</a></h4>
-        </div>
-        <p>Headless content management system built with Node.js and modern JavaScript. Designed for rapid content modeling and developer flexibility.</p>
-        <div class="proj-meta">
-          <span>JavaScript</span>
-          <span>CMS &middot; Node.js</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="top">
-          <div class="icon-box"><i data-lucide="workflow" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/crewai" target="_blank" rel="noopener noreferrer">crewai</a></h4>
-        </div>
-        <p>Experiments with the CrewAI agent orchestration framework — multi-agent collaboration patterns, role-based agents, and task delegation workflows.</p>
-        <div class="proj-meta">
-          <span>Apache 2.0</span>
-          <span>&#9733; 1</span>
-        </div>
-      </div>
+      
 
       <div class="proj-card">
         <div class="top">
           <div class="icon-box"><i data-lucide="candlestick-chart" aria-hidden="true"></i></div>
-          <h4><a href="https://github.com/noaman/options_trader" target="_blank" rel="noopener noreferrer">options_trader</a></h4>
+          <h4><a href="https://github.com/noaman/options_trader" target="_blank" rel="noopener noreferrer">Alt Folio</a></h4>
         </div>
-        <p>Python-based options trading analysis toolkit. Backtesting engine, strategy evaluation, and market data processing for quantitative traders.</p>
+        <p>End to End platform built in Django to build, deploy algorithmic trading strategies on top of Binance and Coinbase.</p>
         <div class="proj-meta">
           <span>Python</span>
-          <span>Trading &middot; Quant</span>
+          <span>Trading &middot; Quant &middot; Django</span>
         </div>
       </div>
 
@@ -890,7 +901,7 @@
 <!-- CONNECT -->
 <section id="connect">
   <div class="container" style="text-align:center;">
-    <div class="sec-label">Connect</div>
+    <div class="sec-label_connect">Connect</div>
     <h3 class="sec-title">Let's Talk</h3>
     <p class="sec-desc" style="margin:0 auto 28px;">Interested in AI strategy, digital transformation, or just want to connect?</p>
     <div class="connect-strip">
